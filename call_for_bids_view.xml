@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <record id="call_for_bids_view_form" model="ir.ui.view">
+            <field name="name">Call For Bids</field>
+            <field name="model">call.for.bids</field>
+            <field name="arch" type="xml">
+                <form string="Call for Bids">
+                    <sheet> 
+                        <group>
+                            <group>
+                                <field name="name_"/>
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="creation_date"/>    
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Call for Bids Lines" name="page_call">
+                                <group>
+                                    <field name="bids" nolabel="1">
+                                        <tree editable="top">
+                                            <field name="product"/>
+                                            <field name="quantity"/>
+                                            <field name="u_o_m"/>
+                                        </tree>
+                                    </field>
+                                </group>            
+                            </page> 
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>    
+        </record>
+        
+        <record id="call_for_bids_view_tree" model="ir.ui.view">
+            <field name="name">Call For Bids</field>
+            <field name="model">call.for.bids</field>
+            
+            <field name="arch" type="xml">
+                <tree string="Call for Bids">
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="call_for_bids_action" model="ir.actions.act_window">
+            <field name="name">Call For Bids</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">call.for.bids</field>
+            <field name="view_type">form</field>
+        </record>
+        
+        <menuitem id="call_for_bids_menu" name="Call for bids" parent="purchase.menu_procurement_management" action="call_for_bids_action"/>
+ 
+        <record id="view_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.common.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="list_price" position="replace">
+                    <field name="list_price" string="Standard Price" />
+                </field>    
+            </field>
+        </record>  
+    </data>
+</openerp>
