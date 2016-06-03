@@ -12,10 +12,6 @@
                 <xpath expr="//form/sheet/group/group/field[@name='partner_ref']" position="after">
                     <field name="company" widget="selection"/>
                 </xpath>
-                <!--<xpath expr="//form/sheet/notebook/page" position="replace">
-                </xpath>
-                <xpath expr="//form/sheet/notebook/page[0]" position="replace">
-                </xpath> -->
                 <xpath expr="/form/sheet[1]/notebook[1]/page[2]" position="replace">
                 </xpath>
             </field>
