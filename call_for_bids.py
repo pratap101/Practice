@@ -1,17 +1,17 @@
 # --*-- utf-8 --*--
 
 import time
+
 from openerp import models, api, fields
 
 class CallForBids(models.Model):
     
-    _rec_name = 'name'
+    _rec_name = 'name_id'
     _name = 'call.for.bids'
     
     def get_current_date(self):
         return time.strftime("%Y-%m-%d"); 
-     
-    @api.multi
+    
     def _get_name(self):
         model = self.env['ir.sequence'].next_by_code('call.sequence') 
         return model
@@ -42,14 +42,14 @@ class CallForBids(models.Model):
         return True  
                     
                     
-    name = fields.Char('Call for Bids Reference', required=True, readonly=True, 
-                       default=lambda self: self._get_name())
+    name_id = fields.Char('Call for Bids Reference', required=True,
+                       default=_get_name)
     user_id = fields.Many2one('res.users', string="Responsible", required=True, 
                              default=lambda self: self.env.user.id)
-    creation_date = fields.Date('Creation date', required=True, 
-                               default=lambda self: self.get_current_date(), 
-                               readonly=True)
-    bids = fields.One2many('call.for.bids.line', 'bids_id', 'Bids') 
+    creation_date = fields.Date(
+        'Creation date', required=True, readonly=True,
+        default=lambda self: self.get_current_date())
+    bids_ids = fields.One2many('call.for.bids.line', 'bids_id', 'Bids') 
     state = fields.Selection([
                             ('draft','Draft'),
                             ('send_by_email','Send By Email'),
@@ -57,9 +57,9 @@ class CallForBids(models.Model):
                             ('send_for_approval','Send For Approval'),
                             ('confirm_order','Confirm Order'),
                             ('cancel','Cancelled')
-                            ], default='draft')
+                            ], default="draft")
     
-        
+    
 class Call_For_Bids_Line(models.Model):
     _name = 'call.for.bids.line'
     

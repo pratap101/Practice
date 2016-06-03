@@ -5,19 +5,19 @@
             <field name="name">Call For Bids</field>
             <field name="model">call.for.bids</field>
             <field name="arch" type="xml">
-                <form string="Call for Bids">
-                    <sheet> 
-                        <header>
-                            <button name="send_by_rfq" string="Send By Email" type="object" attrs="{'invisible': [('state', 'in',        ['send_by_email','rfq','send_for_approval','confirm_order'])]}" class="btn-primary"/>
-                            <button name="set_to_draft" string="RFQ" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_for_approval','confirm_order','rfq'])]}" class="btn-primary" />
-                            <button name="send_for_app" string="Sent For Approval" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_by_email','send_for_approval','confirm_order'])]}" class="btn-primary"/>
-                            <button name="confirm_order" string="Confirm Order" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_by_email','confirm_order','rfq'])]}" class="btn-primary"/>
-                            <button name="cancel" string="Cancel" type="object" class="btn-primary"/>
-                            <field name="state" widget="statusbar" statusbar_visible="draft,send_by_email,rfq,send_for_approval,confirm_order,cancel" statusbar_color='{"draft":"red"}'/>
-                        </header>
+                <form string="Call for Bids"> 
+                    <header>
+                        <button name="send_by_rfq" string="Send By Email" type="object" attrs="{'invisible': [('state', 'in',        ['send_by_email','rfq','send_for_approval','confirm_order'])]}" class="oe_highlight"/>
+                        <button name="set_to_draft" string="RFQ" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_for_approval','confirm_order','rfq'])]}" class="btn-primary" />
+                        <button name="send_for_app" string="Sent For Approval" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_by_email','send_for_approval','confirm_order'])]}" class="btn-primary"/>
+                        <button name="confirm_order" string="Confirm Order" type="object" attrs="{'invisible': [('state', 'in', ['draft','send_by_email','confirm_order','rfq'])]}" class="btn-primary"/>
+                        <button name="cancel" string="Cancel" type="object" class="btn-primary"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,send_by_email,rfq,send_for_approval,confirm_order,cancel" statusbar_color='{"draft":"red"}'/>
+                    </header>
+                    <sheet>
                         <group>
                             <group>
-                                <field name="name"/>
+                                <field name="name_id"/>
                                 <!--attrs="{'readonly': [('state', 'in', ('send_by_email'))]}" -->
                             </group>
                             <group>
@@ -28,7 +28,7 @@
                         <notebook>
                             <page string="Call for Bids Lines" name="page_call">
                                 <group>
-                                    <field name="bids" nolabel="1">
+                                    <field name="bids_ids" nolabel="1">
                                         <tree editable="top">
                                             <field name="product"/>
                                             <field name="quantity"/>
@@ -38,6 +38,9 @@
                                 </group>            
                             </page> 
                         </notebook>
+                        <footer>
+                            <button name="wizard" string="Wizard Open" type="object" class="btn-primary" />
+                        </footer>
                     </sheet>
                 </form>
             </field>    
@@ -50,7 +53,7 @@
             <field name="arch" type="xml">
                 <tree string="Call for Bids">
                     <field name="user_id"/>
-                    <field name="name"/>
+                    <field name="name_id"/>
                     <field name="state"/>
                 </tree>
             </field>

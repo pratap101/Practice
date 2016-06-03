@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record forcecreate="1" id="call_for_bids_sequence" model="ir.sequence">
+        <record id="call_for_bids_sequence" model="ir.sequence">
             <field name="name">CallForBids</field>
             <field name="code">call.sequence</field>
             <field name="prefix">TE</field>
             <field name="padding">5</field>
-            <field name="name_" eval="False"/>
+            <field name="name_id" eval="False"/>
         </record>
     </data>
 </openerp>
